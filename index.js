@@ -1,67 +1,17 @@
 'use strict';
 
-const {
-  dialogflow,
-  Suggestions
-} = require('actions-on-google');
-const functions = require('firebase-functions');
-const express = require('express'); 
-const server = express(); 
-const bodyParser = require('body-parser'); 
-const app = dialogflow({debug: true});
-
-app.intent('Default Fallback Intent', (conv) => {
-    conv.ask('Please repeat');
-});
-
-app.intent('Default Welcome Intent', (conv) => {
-    conv.ask('Hi, what do you wanna talk about?');
-    conv.ask(new Suggestions(['fashion tips', 'celebrity news']));
-});
-
-app.intent('Bathroom', (conv, {record}) => {
-    // const bathroomResult = 0;
-    // Respond with the user's lucky number and end the conversation.
-    // conv.close('Your bathroom visit is fine.');
-    conv.close(new SimpleResponse({
-    speech: 'Howdy, this is GeekNum. I can tell you fun facts about almost any number, my favorite is 42. What number do you have in mind?',
-    text: 'Howdy! I can tell you fun facts about almost any number. What do you have in mind?',
-    }));
-});
-
-/*
-'use strict';
-
-// Import the Dialogflow module from the Actions on Google client library.
 const {dialogflow} = require('actions-on-google');
+const express = require('express');
+const bodyParser = require('body-parser');
 
-// Import the firebase-functions package for deployment.
-// const functions = require('firebase-functions');
+const app = dialogflow();
 
-// Instantiate the Dialogflow client.
-const app = dialogflow({debug: true});
-
-// Handle the Dialogflow intent named 'favorite color'.
-// The intent collects a parameter named 'color'.
-app.intent('Bathroom', (conv, {record}) => {
-    // const bathroomResult = 0;
-    // Respond with the user's lucky number and end the conversation.
-    conv.close('Your bathroom visit is fine.');
+app.intent('Default Welcome Intent', conv => {
+    conv.ask('Hi, Welcome to Assistant by Express JS ');
 });
-*/
 
-
-
-
-server.use(
-  bodyParser.urlencoded({
-    extended: true
-  })
-);
-
-server.use(bodyParser.json()); 
-
-server.post('/hook', app);
-server.listen(3000, () => {
-              console.log('Server listening on port 3000.');
+app.intent('Bathroom', conv => {
+    conv.close('bathaaaaaaaaaaaaaaaaa ');
 });
+
+express().use(bodyParser.json(), app).listen(8080);
