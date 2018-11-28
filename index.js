@@ -17,6 +17,12 @@ app.intent('Default Welcome Intent', (conv) => {
     conv.ask(new Suggestions(['fashion tips', 'celebrity news']));
 });
 
+app.intent('Bathroom', (conv, {record}) => {
+    // const bathroomResult = 0;
+    // Respond with the user's lucky number and end the conversation.
+    conv.close('Your bathroom visit is fine.');
+});
+
 /*
 'use strict';
 
