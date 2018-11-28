@@ -4,7 +4,7 @@
 const {dialogflow} = require('actions-on-google');
 
 // Import the firebase-functions package for deployment.
-//const functions = require('firebase-functions');
+const functions = require('firebase-functions');
 
 // Instantiate the Dialogflow client.
 const app = dialogflow({debug: true});
