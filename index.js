@@ -4,7 +4,7 @@
 const {dialogflow} = require('actions-on-google');
 
 // Import the firebase-functions package for deployment.
-const functions = require('firebase-functions');
+// const functions = require('firebase-functions');
 
 // Instantiate the Dialogflow client.
 const app = dialogflow({debug: true});
@@ -12,10 +12,14 @@ const app = dialogflow({debug: true});
 // Handle the Dialogflow intent named 'favorite color'.
 // The intent collects a parameter named 'color'.
 app.intent('Bathroom', (conv, {record}) => {
-    const bathroomResult = 0;
+    // const bathroomResult = 0;
     // Respond with the user's lucky number and end the conversation.
-    conv.close('Your bathroom visit is ' + bathroomResult);
+    conv.close('Your bathroom visit is fine.');
 });
 
-// Set the DialogflowApp object to handle the HTTPS POST request.
-exports.dialogflowFirebaseFulfillment = functions.https.onRequest(app);
+const express = require('express'); 
+const bodyParser = require('body-parser'); 
+const server = express(); 
+server.use(bodyParser.json()); 
+server.post('/hook', app);
+server.listen(3000, () => console.log('Server listening on port 3000.'))
