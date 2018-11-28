@@ -20,7 +20,11 @@ app.intent('Default Welcome Intent', (conv) => {
 app.intent('Bathroom', (conv, {record}) => {
     // const bathroomResult = 0;
     // Respond with the user's lucky number and end the conversation.
-    conv.close('Your bathroom visit is fine.');
+    // conv.close('Your bathroom visit is fine.');
+    conv.close(new SimpleResponse({
+    speech: 'Howdy, this is GeekNum. I can tell you fun facts about almost any number, my favorite is 42. What number do you have in mind?',
+    text: 'Howdy! I can tell you fun facts about almost any number. What do you have in mind?',
+    }));
 });
 
 /*
