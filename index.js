@@ -12,7 +12,7 @@ app.intent('Default Fallback Intent', (conv) => {
     conv.ask('Please repeat');
 });
 
-app.intent('Bathroom', (conv) => {
+app.intent('Default Welcome Intent', (conv) => {
     conv.ask('Hi, what do you wanna talk about?');
     conv.ask(new Suggestions(['fashion tips', 'celebrity news']));
 });
