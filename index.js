@@ -1,21 +1,21 @@
-// Dependencies
-const express = require('express');      //web application framework for nodejs
-const bodyparser = require('body-parser'); //parse incoming request body
+'use strict';
 
-// Configuration
-const app = express();
-app.use(bodyparser.json());
+// Import the Dialogflow module from the Actions on Google client library.
+const {dialogflow} = require('actions-on-google');
 
-// Webhook route
-app.post('/webhook', (req, res) => {
-	const data = req.body;
+// Import the firebase-functions package for deployment.
+//const functions = require('firebase-functions');
 
-	// Code the task you want to achieve with @data
-	// Read the v2 api documentation of dialogflow : https://dialogflow.com/docs/fulfillment
-	// Using the v2 will become mandatory, Google wrote a guide to migrate from v1 to v2 as v2 is officially released
+// Instantiate the Dialogflow client.
+const app = dialogflow({debug: true});
 
-	const response = {
-		fulfillmentText: "Your webhook works fine !",
-	}
-	res.json(response);
+// Handle the Dialogflow intent named 'favorite color'.
+// The intent collects a parameter named 'color'.
+app.intent('Bathroom', (conv, {bathroom}) => {
+    const bathroom_result = color.length;
+    // Respond with the user's lucky number and end the conversation.
+    conv.close('Your lucky number is ' + bathroom_result);
 });
+
+// Set the DialogflowApp object to handle the HTTPS POST request.
+exports.dialogflowFirebaseFulfillment = functions.https.onRequest(app);
